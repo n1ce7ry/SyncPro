@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "syncpro"
+version = "0.1.0"
+description = ""
+authors = ["Maxim <max2004@zel@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "^4.2.6"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
