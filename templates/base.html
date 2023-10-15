@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  <script src="https://kit.fontawesome.com/06d986b207.js" crossorigin="anonymous"></script>
+  {% block extrahead %}
+  {% endblock %}
+</head>
+
+<body>
+  <header class="header">
+    <div class="header__container">
+      <div class="logo__container">
+        <img class="header__logo" src="{% static 'images/logo.png' %}" alt="логотип">
+      </div>
+      <div class="sidenav">
+        <a class="nav__link {% block dash_active %}{% endblock %}" href="{% url 'dashboard' %}"><i
+            class="fa-solid fa-table-columns"></i> Dashboard</a>
+        <a class="nav__link {% block tasks_active %}{% endblock %}" href="{% url 'tasks' %}"><i
+            class="fa-solid fa-list-check"></i> Задания</a>
+        <a class="nav__link {% block app_active %}{% endblock %}" href="{% url 'applications' %}"><i
+            class="fa-regular fa-envelope"></i> Заявки</a>
+        <a class="nav__link {% block clients_active %}{% endblock %}" href="{% url 'clients' %}"><i
+            class="fa-regular fa-circle-user"></i> Клиенты</a>
+        <a class="nav__link {% block finance_active %}{% endblock %}" href="{% url 'finance' %}"><i
+            class="fa-regular fa-credit-card"></i> Доходы</a>
+        <a class="nav__link {% block settings_active %}{% endblock %} nlink" href="{% url 'settings' %}"><i
+            class="fa-solid fa-globe"></i> Настройки</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="main__container">
+      <div class="main__header">
+        <p class="main__data">Понедельник, 9 октября</p>
+      </div>
+      <div class="main__login">
+        <a href="settings.html" class="login__items"><i class="fa-solid fa-user-large"></i></i> Максим</a>
+        <a href="registration.html" class="login__items"><i class="fa-solid fa-right-from-bracket"></i> Выход</a>
+      </div>
+    </div>
+
+    {% block main %}
+
+    {% endblock %}
+
+  </main>
+
+</body>
+
+</html>

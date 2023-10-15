@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to SyncPro</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+
+<body class="body__avto">
+
+    <main class="main__regisration">
+        <section class="form">
+            <div class="form__container">
+                <form method="POST" class="form__content">
+                    
+                    {% csrf_token %}
+                    
+                    <h1 class="form__title">Добро пожаловать в SyncPro</h1>
+
+                    <label for="{{ form.username.id_for_label }}" class="form__lable">Введите логин:</label><br>
+                    {{ form.username }}
+
+                    <label for="{{ form.password.id_for_label }}" class="form__lable">Введите пароль:</label><br>
+                    {{ form.password }}
+
+                    <button type="submit" class="form__btn">Войти</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+
+
+    <footer class="footer">
+        <div class="footer__container">
+            <p class="footer__text">© Все права защищены 2023</p>
+            <p class="footer__text">Работает на Open-Source</p>
+        </div>
+    </footer>
+
+
+</body>
+
+</html>

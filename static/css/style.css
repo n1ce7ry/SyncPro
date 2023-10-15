@@ -1,0 +1,164 @@
+@font-face {
+    font-family: 'Menlo'; /* основной текст */
+    src: url('./fonts/Menlo-Regular.ttf');
+    font-style: normal;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #f7fbfc;
+    font-family: 'Menlo', serif;
+}
+a{
+    text-decoration: none;
+}
+
+ol,ul{
+    list-style: none;
+}
+footer{
+    background-color: #ffff;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+.footer__container{
+    padding: 2% 5%;
+    display: flex;
+    justify-content: space-between;
+}
+
+/*   Авторизация  */
+
+.form{
+    padding: 2% 20%;
+}
+.form__container{
+    padding: 4% 0 4% 0;
+    margin: 4% 0;
+    background-color: #ffff;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    border-radius: 20px;
+    box-shadow: 2px 2px 5px rgb(20 29 61 / 15%), -2px -2px 5px rgb(20 29 61 / 15%);
+}
+
+.form__title{
+    font-size: 36px;
+    padding-bottom: 30px;
+    color: #181b20;
+}
+.form__lable{
+    font-size: 22px;
+}
+.form__content input{
+    margin: 10px 0 20px 0;
+    padding: 20px 50px 20px 20px;
+    font-size: 18px;
+    font-family: 'Menlo', serif;
+    border: 1px solid #3d42494c;
+    border-radius: 10px;
+    width: 100%; 
+    outline: none;
+}
+.form__input:focus{
+    outline: 1px solid #524abb;
+    border-radius: 10px;
+}
+
+
+.form__btn{
+    background-color: #524abb;
+    border: 2px solid #524abb;
+    border-radius: 10px;
+    font-size: 18px;
+    font-family: 'Menlo', serif;
+    padding: 15px 70px;
+    transition: all 0.5s;
+    margin: 20px 0 20px 0;
+    color: #f7fbfc;
+}
+.form__btn:hover{
+    cursor: pointer;
+    font-family: 'Menlo', serif;
+    border: 2px solid #524abb;
+    color: #181b20;
+    background-color: #524abb9b;
+}
+
+/*  dashboard   */
+.header__logo{
+    margin-bottom: 20px;
+    width: 80%;
+
+}
+.header__container{
+    background-color: #ffff;
+    height: 100%;
+    width: 260px;
+    position: fixed;
+    padding: 30px 21px 21px 21px;
+    top: 0;
+    left: 0;
+    text-align: center;
+    border-radius: 0 10px 10px 0;
+    overflow-x: hidden;
+    box-shadow: 2px 2px 5px rgb(20 29 61 / 15%), -2px -2px 5px rgb(20 29 61 / 15%);
+}
+
+.sidenav{
+    display: flex;
+    flex-flow: column;
+    text-align: center;
+    padding-top: 10%;
+}
+.nav__link{
+    color: #747272;
+    padding: 5% 10% 5% 10%;
+    font-size: 18px;
+    text-align: left;
+}
+.sidenav__settings{
+    margin-top: 50%;
+    text-align: left;
+}
+.nlink{
+    margin-top: 100px;
+}
+
+.active {
+    color: #f7fbfc;
+    background-color: #524abbd7;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgb(20 29 61 / 15%);
+}
+.main{
+    margin-left: 270px ;
+    padding: 25px;
+    align-items: center;
+}
+.main__data{
+    font-size: 16px;
+}
+.login__items{
+    font-size: 15px;
+   padding-left: 13px;
+    color: #181b20;
+}
+.login__items:hover{
+    color: #524abb;
+    transition: all 0.5s;
+}
+.main__container{
+    display: flex;
+    justify-content: space-between;
+}
+.main__login{
+    display: flex;
+    justify-content: space-between;
+}
