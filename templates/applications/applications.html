@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
+
 {% block app_active %}
 active
+{% endblock %}
+
+{% block date %}
+{{ now|date:"l, d E" }}
 {% endblock %}

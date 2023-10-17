@@ -1,4 +1,49 @@
 {% extends 'base.html' %}
+
+{% block title %}
+Клиенты
+{% endblock %}
+
 {% block clients_active %}
 active
+{% endblock %}
+
+{% block date %} {{ now|date:"l, d E"  }} {% endblock %}
+
+{% block main %}
+<div class="client-title__container">
+    <h3 class="client__title">Клиенты</h3>
+    <div class="search-box">
+        <input type="text" name="" class="search-txt" placeholder="Поиск" />
+        <a class="search-btn" href="#">
+            <i class="fa fa-search" aria-hidden="true"></i>
+        </a>
+    </div>
+    <button class="client__btn"><a href="{% url 'add_client' %}">Добавить клиента</a></button>
+</div>
+
+<div class="client-table__container">
+    <table class="client__table">
+        <thead>
+            <tr>
+                <th class="client-table__title">ID</th>
+                <th class="client-table__title">Имя</th>
+                <th class="client-table__title">Телефон</th>
+                <th class="client-table__title">Почта</th>
+                <th class="client-table__title">Дата создания</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for client in object_list %}
+                <tr>
+                    <td class="client-table__content">{{ client.id }}</td>
+                    <td class="client-table__content"><a href="{% url 'edit_client' client.id %}">{{ client.name }}</a></td>
+                    <td class="client-table__content"><a href="{% url 'edit_client' client.id %}">{{ client.phone }}</a></td>
+                    <td class="client-table__content"><a href="{% url 'edit_client' client.id %}">{{ client.email }}</a></td>
+                    <td class="client-table__content"><a href="{% url 'edit_client' client.id %}">{{ client.created_at }}</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}

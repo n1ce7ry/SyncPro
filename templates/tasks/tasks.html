@@ -1,4 +1,32 @@
 {% extends 'base.html' %}
+
 {% block tasks_active %}
 active
+{% endblock %}
+
+{% block date %}
+{{ now|date:"l, d E" }}
+{% endblock %}
+
+{% block main %}
+  <div class="task__section">
+      <div class="title__container-task">
+          <h3 class="tasks__title">Мои задачи</h3>
+          <button class="task__btn"><a href="newtask.html">Добавить задачу</a> </button>
+      </div>
+      <div class="task-items__container">
+          {% for task in object_list %}
+          <div class="task__items">
+              <h3 class="item__title">{{ task.title }}</h3>
+              <p class="item__text">{{ task.description }}</p>
+              <div class="items__button">
+                  <label for="check1" class="button__text">{{ task.status }}
+                  <input class="real-checkbox" type="checkbox" id="check1" name="done">
+                  <span class="custom-checkbox"></span></label>
+                  <i class="fa-solid fa-trash-can" style="color: #c5544d;"></i>
+              </div>
+          </div>
+          {% endfor %}
+      </div>
+  </div>
 {% endblock %}

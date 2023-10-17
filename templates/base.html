@@ -38,7 +38,7 @@
   <main class="main">
     <div class="main__container">
       <div class="main__header">
-        <p class="main__data">Понедельник, 9 октября</p>
+        <p class="main__data">{% block date %}{% endblock %}</p>
       </div>
       <div class="main__login">
         <a href="settings.html" class="login__items"><i class="fa-solid fa-user-large"></i></i> Максим</a>
@@ -51,6 +51,9 @@
     {% endblock %}
 
   </main>
+
+{% block js %}
+{% endblock %}
 
 </body>
 
