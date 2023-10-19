@@ -13,12 +13,12 @@ active
 {% block main %}
 <div class="client-title__container">
     <h3 class="client__title">Клиенты</h3>
-    <div class="search-box">
-        <input type="text" name="" class="search-txt" placeholder="Поиск" />
-        <a class="search-btn" href="#">
+    <form method="get" action="{% url 'search_clients' %}" class="search-box">
+        <input type="text" name="q" class="search-txt" placeholder="Поиск" />
+        <button class="search-btn">
             <i class="fa fa-search" aria-hidden="true"></i>
-        </a>
-    </div>
+        </button>
+    </form>
     <button class="client__btn"><a href="{% url 'add_client' %}">Добавить клиента</a></button>
 </div>
 

@@ -1,6 +1,8 @@
+from django.db.models import Q
+from django.utils import timezone
+
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView
-from django.utils import timezone
 
 from clients.models import Client
 
@@ -14,6 +16,18 @@ class ClientsListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return _get_todays_date(context)
+
+
+class SearchClientsListView(ListView):
+    model = Client
+    template_name = 'clients/clients.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get("q")
+        object_list = Client.objects.filter(
+            Q(name__icontains=query) | Q(phone__icontains=query) | Q(email__icontains=query)
+        )
+        return object_list
 
 
 class AddClientView(CreateView):

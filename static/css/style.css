@@ -15,6 +15,9 @@ body {
     background-color: #f7fbfc;
     font-family: 'Menlo', serif;
 }
+button{
+    border-width: 0px;
+}
 
 a {
     text-decoration: none;
@@ -44,6 +47,7 @@ footer {
 
 .form {
     padding: 2% 20%;
+    margin-top: 6%;
 }
 
 .form__container {
@@ -103,20 +107,24 @@ footer {
     color: #181b20;
     background-color: #524abb9b;
 }
+.footer__link{
+    text-decoration: underline;
+    color: #524abb;
+}
 
 /*  dashboard   */
 .header__logo {
-    margin-bottom: 20px;
-    width: 80%;
+    margin-bottom: 30px ;
+    width: 90%;
 
 }
 
 .header__container {
     background-color: #ffff;
     height: 100%;
-    width: 260px;
+    width: 330px;
     position: fixed;
-    padding: 30px 21px 21px 21px;
+    padding: 30px 50px;
     top: 0;
     left: 0;
     text-align: center;
@@ -134,8 +142,8 @@ footer {
 
 .nav__link {
     color: #747272;
-    padding: 5% 10% 5% 10%;
-    font-size: 18px;
+    padding: 7% 10%;
+    font-size: 22px;
     text-align: left;
 }
 
@@ -145,7 +153,7 @@ footer {
 }
 
 .nlink {
-    margin-top: 100px;
+    margin-top: 185%;
 }
 
 .active {
@@ -154,19 +162,19 @@ footer {
     border-radius: 10px;
     box-shadow: 2px 2px 5px rgb(20 29 61 / 15%);
 }
-
 .main {
-    margin-left: 270px;
+    margin-left: 370px;
+    margin-right: 25px;
     padding: 25px;
     align-items: center;
 }
 
 .main__data {
-    font-size: 16px;
+    font-size: 20px;
 }
 
 .login__items {
-    font-size: 15px;
+    font-size: 20px;
     padding-left: 13px;
     color: #181b20;
 }
@@ -187,9 +195,17 @@ footer {
 }
 
 /* task section */
+.section__container{
+    max-height: 45vh
+}
+.tasks__title-dash{
+    margin-top: 20px;
+    color: #524abb;
+    font-size: 26px;
+}
 .section__tasks {
     margin-top: 30px;
-    max-width: 65%;
+    max-width: 63%;
     background-color: #fff;
     border-radius: 15px;
     padding: 25px;
@@ -209,7 +225,10 @@ footer {
 
 .tasks__title {
     color: #524abb;
-    font-size: 25px;
+    font-size: 22px;
+}
+.task__title{
+    font-size: 18px;
 }
 
 .tasks__cotainer {
@@ -217,16 +236,19 @@ footer {
     justify-content: space-between;
     padding-top: 15px;
 }
-
+.task__items-dash{
+    width: 60%;
+}
 .task__links {
-    padding: 10px;
-    font-size: 22px;
+    padding: 10px 0;
+    font-size: 18px;
     font-weight: 600;
 }
 
 .link__text {
     padding-top: 10px;
-    font-size: 15px;
+    padding-bottom: 20px;
+    font-size: 16px;
     color: #aaaeb1;
     font-weight: normal;
 }
@@ -241,7 +263,7 @@ span {
 
 /* месяцы и годы */
 #month-calendar {
-    width: 45%;
+    width: 40%;
 }
 
 .month {
@@ -259,7 +281,7 @@ span {
     padding: 0;
     margin: 0;
     align-items: center;
-    font-size: 20px;
+    font-size: 23px;
     line-height: 1.4;
     letter-spacing: 0.1rem;
     text-transform: uppercase;
@@ -269,7 +291,7 @@ span {
 .month li.prev,
 .month li.next {
     cursor: pointer;
-    font-size: 20px;
+    font-size: 23px;
     margin-top: 15px;
 }
 
@@ -282,7 +304,7 @@ span {
 }
 
 .month li.year-name {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: 400;
 }
 
@@ -308,13 +330,13 @@ span {
 }
 
 .days li {
-    padding: 5px;
+    padding: 10px;
     list-style: none;
     display: inline-block;
     flex: 0 0 calc(100% / 7);
     text-align: center;
     color: #181b20;
-    font-size: 0.9rem;
+    font-size: 1.2rem;
     line-height: 1rem;
 }
 
@@ -324,31 +346,53 @@ span {
 }
 
 .dash-client__container {
-    background-color: #fff;
-    width: 33%;
+    width: 34%;
     margin-top: 30px;
+    margin-right: 15px;
     background-color: #fff;
     border-radius: 15px;
+    height: 84vh;
     padding: 25px;
     box-shadow: 2px 2px 5px rgba(20, 29, 61, 0.038), -2px -2px 5px rgba(20, 29, 61, 0.038);
 }
 .dash-client__title{
-    font-size: 25px;
+    font-size: 22px;
     color: #524abb;
+    padding-bottom: 15px;
 }
 .dash-client__list{
     margin-top: 15px;
+}
+.client-list__content {
+    display: flex;
+}
+.dash-client__avatar{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+.client-list__item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+    padding-bottom: 30px;
+}
+.client-list__tel{
+    margin-top: 5px;
+    color: #747272;
+    font-size: 15px;
 }
 
 /* графики */
 .section__graphics {
     margin-top: 30px;
-
+    max-width: 63%;
 }
 
 .graphics__container {
     display: flex;
-    justify-content: space-between;
 }
 
 .finance {
@@ -357,27 +401,33 @@ span {
     padding: 25px;
     box-shadow: 2px 2px 5px rgba(20, 29, 61, 0.038), -2px -2px 5px rgba(20, 29, 61, 0.038);
 }
-
-.finance__title {
+.finance-graphic__design{
+    width: 100%;
+}
+.finance__title-dash {
     color: #524abb;
-    font-size: 25px;
+    font-size: 22px;
+    margin-bottom: 20px;
+   
 }
 .applic-graphics__design {
     display: block;
     box-sizing: border-box;
-    width: 203%;    
+    width: 162%;    
 }
 
 .applications {
     background-color: #fff;
     border-radius: 15px;
+    margin-left: 30px;
     padding: 25px;
     box-shadow: 2px 2px 5px rgba(20, 29, 61, 0.038), -2px -2px 5px rgba(20, 29, 61, 0.038);
 }
 
 .applications__title {
     color: #524abb;
-    font-size: 25px;
+    font-size: 22px;
+    margin-bottom: 20px;
 }
 
 /* ЗАДАЧИ */
@@ -417,7 +467,7 @@ span {
 
 .task-items__container {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .task__items {
@@ -425,7 +475,24 @@ span {
     border-radius: 15px;
     padding: 15px;
     max-width: 24%;
+    margin-right: 18px;
     margin-top: 25px;
+}
+
+.red-border {
+    border: 1px solid #c5544d;
+}
+
+.orange-border {
+    border: 1px solid orange;
+}
+
+.green-border {
+    border: 1px solid #4a9542;
+}
+
+.task__items:nth-child(4n+4) {
+    margin-right: 0;
 }
 
 .item__text {
@@ -566,6 +633,33 @@ span {
     font-size: 26px;
 }
 
+.client-filter__container {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.client__filter {
+    background: #524abb;
+    padding: 10px 20px;
+    border: 1px solid #524abb;
+    border-radius: 15px;
+    max-width: 15%;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    margin-right: 20px;
+    transition: all  0.5s;
+}
+
+.client__filter:hover {
+    cursor: pointer;
+    font-family: 'Menlo', serif;
+    border: 1px solid #524abb;
+    color: white;
+    background-color: #524abb9b;
+}
+
 .client__btn {
     background-color: #524abb;
     border: 2px solid #524abb;
@@ -642,6 +736,9 @@ span {
     width: 0px;
     font-weight: bold;
 }
+.search-txt::placeholder {
+    color: white;
+}
 .client-table__container{
     background-color: #fff;
     margin-top: 30px;
@@ -651,8 +748,7 @@ span {
 }
 .client__table{
     width: 100%;
-    text-align: left;
-    
+    text-align: left; 
 }
 .client__table>thead{
     background-color: #f7fbfc;
@@ -687,7 +783,7 @@ span {
     margin: 20px 0;
     padding: 10px;
     width: 500px;
-    font-size: 12px;
+    font-size: 16px;
     font-family: 'Menlo', serif;
     border: 1px solid #3d42494c;
     border-radius: 10px;
@@ -727,3 +823,92 @@ span {
     color: #181b20;
     background-color: #524abb9b;
 }
+.client-table__link{
+    color: #181b20;
+}
+/* Финансы */
+.finance__section{
+    margin-top: 30px;
+}
+.finance__container{
+    display: flex;
+    justify-content: space-between;
+}
+.finance-table__container{
+    background-color: #fff;
+    padding: 25px;
+    width: 50%;
+    height: 56vh;
+    border-radius: 15px;
+    box-shadow: 2px 2px 5px rgba(20, 29, 61, 0.038), -2px -2px 5px rgba(20, 29, 61, 0.038);
+}
+.finance__table{
+    width: 100%;
+}
+.finance__table>thead{
+    background-color: #f7fbfc;
+}
+.finance-table__title{
+    padding: 10px;
+    text-align: left;
+}
+.finance-table__content{
+    padding: 20px 10px;
+}
+.indicators__container{
+    display: flex;
+    justify-content: space-between;
+    width: 48%;
+    height: 35vh;
+}
+.indicators-title__container{
+    display: flex;
+    justify-content: space-between;
+}
+.finace-indicators{
+    background-color: #fff;
+    padding: 25px;
+    width: 48%;
+    height: 40%;
+    border-radius: 15px;
+    box-shadow: 2px 2px 5px rgba(20, 29, 61, 0.038), -2px -2px 5px rgba(20, 29, 61, 0.038);
+}
+.indicators__content{
+    font-size: 30px;
+    padding-top: 20px;
+}
+.indicators__title{
+    font-size: 20px;
+}
+.finance__span{
+    color: #4a9542;
+}
+.finance__ikon{
+    font-size: 22px;
+}
+.finance-graphics__container{
+    display: flex;
+    position: absolute;
+    right: 0;
+    top: 28%;
+    margin:20px 48px 20px 20px;
+    width: 37%;
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 2px 2px 5px rgba(20, 29, 61, 0.038), -2px -2px 5px rgba(20, 29, 61, 0.038);
+}
+.graphic-design{
+    width: 400%;   
+}
+.finance__title-graphics{
+    color: #524abb;
+    font-size: 22px;
+}
+.finance__title{
+    color: #524abb;
+    font-size: 26px;
+    margin-bottom: 30px;
+}
+
+

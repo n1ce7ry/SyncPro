@@ -5,4 +5,4 @@ from clients.models import Client
 
 @admin.register(Client)
 class TaskAdmin(admin.ModelAdmin):
-    pass
+    list_filter = ['created_at']
