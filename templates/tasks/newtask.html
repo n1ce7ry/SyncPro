@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Создание задачи
+{% endblock %}
+
+{% block tasks_active %}
+active
+{% endblock %}
+
+{% block date %} {{ now|date:"l, d E" }} {% endblock %}
+
+{% block main %}
+
+<div class="add-task__section">
+    <h3 class="add-task__title"><a href="{% url 'tasks' %}"><i class="fa-solid fa-arrow-left" style="color: #524abb;"></i>
+            Добавление новой задачи</a></h3>
+    <div class="add-task__container">
+        <form method="post">
+            {% csrf_token %}
+
+            <label class="task-form__label" for="{{ form.title.id_for_label }}">Введите название задачи:</label><br>
+            {{ form.title}} <br>
+
+            <label class="task-form__label" for="{{ form.description.id_for_label }}">Опишите задачу:</label><br>
+            {{ form.description }} <br>
+            <button type="submit" class="add-task__btn">Добавить</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

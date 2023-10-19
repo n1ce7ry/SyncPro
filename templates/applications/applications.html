@@ -7,3 +7,106 @@ active
 {% block date %}
 {{ now|date:"l, d E" }}
 {% endblock %}
+
+{% block main %}
+<div class="client-title__container">
+    <h3 class="client__title">Заявки</h3>
+    <div class="search-box">
+        <input type="text" name="" class="search-txt" placeholder="Поиск" />
+        <a class="search-btn" href="#">
+            <i class="fa fa-search" aria-hidden="true"></i>
+        </a>
+    </div>
+    <button class="client__btn"><a href="newclient.html">Добавить заявку</a></button>
+</div>
+
+<div class="client-filter__container">
+    <div class="client__filter">Все</div>
+    <div class="client__filter">За неделю</div>
+    <div class="client__filter">За месяц</div>
+</div>
+
+<div class="client-table__container">
+    <table class="client__table">
+        <thead>
+            <tr>
+                <th class="client-table__title">ID</th>
+                <th class="client-table__title">Название заявки</th>
+                <th class="client-table__title">Клиент</th>
+                <th class="client-table__title">Цена</th>
+                <th class="client-table__title">Дата создания</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="client-table__content"> 1</td>
+                <td class="client-table__content"><a class="client-table__link" href="editclient.html">Максим</a></td>
+                <td class="client-table__content"><a class="client-table__link" href="editclient.html">+89876428751</a>
+                </td>
+                <td class="client-table__content"><a class="client-table__link"
+                        href="editclient.html">max.zelenin2004@gmail.com</a></td>
+                <td class="client-table__content"><a class="client-table__link" href="editclient.html">12.10.2023</a>
+                </td>
+            </tr>
+            <tr>
+                <td class="client-table__content">2</td>
+                <td class="client-table__content"><a class="client-table__link" href="editclient.html">Настя</a></td>
+                <td class="client-table__content"><a class="client-table__link" href="editclient.html">+89826428751</a>
+                </td>
+                <td class="client-table__content"><a class="client-table__link"
+                        href="editclient.html">anastasia.kokorina2004@gmail.com</a></td>
+                <td class="client-table__content"><a class="client-table__link" href="editclient.html">13.10.2023</a>
+                </td>
+            </tr>
+            <tr>
+                <td class="client-table__content"> 1</td>
+                <td class="client-table__content"><a class="client-table__link" href="editclient.html">Максим</a></td>
+                <td class="client-table__content"><a class="client-table__link" href="editclient.html">+89876428751</a>
+                </td>
+                <td class="client-table__content"><a class="client-table__link"
+                        href="editclient.html">max.zelenin2004@gmail.com</a></td>
+                <td class="client-table__content"><a class="client-table__link" href="editclient.html">12.10.2023</a>
+                </td>
+            </tr>
+            <tr>
+                <td class="client-table__content">2</td>
+                <td class="client-table__content"><a class="client-table__link" href="editclient.html">Настя</a></td>
+                <td class="client-table__content"><a class="client-table__link" href="editclient.html">+89826428751</a>
+                </td>
+                <td class="client-table__content"><a class="client-table__link"
+                        href="editclient.html">anastasia.kokorina2004@gmail.com</a></td>
+                <td class="client-table__content"><a class="client-table__link" href="editclient.html">13.10.2023</a>
+                </td>
+            </tr>
+            <tr>
+                <td class="client-table__content"> 1</td>
+                <td class="client-table__content"><a class="client-table__link" href="editclient.html">-</a></td>
+                <td class="client-table__content"><a class="client-table__link" href="editclient.html">+89876428751</a>
+                </td>
+                <td class="client-table__content"><a class="client-table__link" href="editclient.html">-</a></td>
+                <td class="client-table__content"><a class="client-table__link" href="editclient.html">-</a></td>
+            </tr>
+            <tr>
+                <td class="client-table__content"> 1</td>
+                <td class="client-table__content"><a class="client-table__link" href="editclient.html">Максим</a></td>
+                <td class="client-table__content"><a class="client-table__link" href="editclient.html">+89876428751</a>
+                </td>
+                <td class="client-table__content"><a class="client-table__link"
+                        href="editclient.html">max.zelenin2004@gmail.com</a></td>
+                <td class="client-table__content"><a class="client-table__link" href="editclient.html">12.10.2023</a>
+                </td>
+            </tr>
+            <tr>
+                <td class="client-table__content">2</td>
+                <td class="client-table__content"><a class="client-table__link" href="editclient.html">Настя</a></td>
+                <td class="client-table__content"><a class="client-table__link" href="editclient.html">+89826428751</a>
+                </td>
+                <td class="client-table__content"><a class="client-table__link"
+                        href="editclient.html">anastasia.kokorina2004@gmail.com</a></td>
+                <td class="client-table__content"><a class="client-table__link" href="editclient.html">13.10.2023</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}

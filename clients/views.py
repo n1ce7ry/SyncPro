@@ -9,7 +9,7 @@ from clients.models import Client
 
 class ClientsListView(ListView):
     model = Client
-    paginate_by = 20 
+    paginate_by = 11 
     template_name = 'clients/clients.html'
     ordering = ['-created_at']
     

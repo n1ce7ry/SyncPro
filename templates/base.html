@@ -6,6 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %}{% endblock %}</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
   <script src="https://kit.fontawesome.com/06d986b207.js" crossorigin="anonymous"></script>
   {% block extrahead %}
@@ -22,7 +23,7 @@
         <a class="nav__link {% block dash_active %}{% endblock %}" href="{% url 'dashboard' %}"><i
             class="fa-solid fa-table-columns"></i> Дэшборд</a>
         <a class="nav__link {% block tasks_active %}{% endblock %}" href="{% url 'tasks' %}"><i
-            class="fa-solid fa-list-check"></i> Задания</a>
+            class="fa-solid fa-list-check"></i> Задачи</a>
         <a class="nav__link {% block app_active %}{% endblock %}" href="{% url 'applications' %}"><i
             class="fa-regular fa-envelope"></i> Заявки</a>
         <a class="nav__link {% block clients_active %}{% endblock %}" href="{% url 'clients' %}"><i

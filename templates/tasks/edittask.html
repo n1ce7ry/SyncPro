@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Редактировать задачу
+{% endblock %}
+
+{% block tasks_active %}
+active
+{% endblock %}
+
+{% block date %} {{ now|date:"l, d E" }} {% endblock %}
+
+{% block main %}
+<div class="add-client__section">
+    <h3 class="add-client__title">
+        <a href="{% url 'tasks' %}">
+            <i class="fa-solid fa-arrow-left" style="color: #524abb;"></i>
+            Редактирование задачи</a>
+    </h3>
+    <div class="add-client__container">
+
+        <form method="post">
+            {% csrf_token %}
+
+            <label class="client-form__label" for="{{ form.name.id_for_label }}">Изменить заголовок задачи:</label><br>
+            {{ form.title }} <br>
+
+            <label class="client-form__label" for="{{ form.phone.id_for_label }}">Изменить описание задачи:</label><br>
+            {{ form.description }} <br>
+
+            <label class="client-form__label" for="{{ form.email.id_for_label }}">Изменить статус задачи:</label><br>
+            {{ form.status }} <br>
+
+            <button class="add-client__btn">Сохранить</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

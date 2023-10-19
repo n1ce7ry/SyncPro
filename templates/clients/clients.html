@@ -34,16 +34,56 @@ active
             </tr>
         </thead>
         <tbody>
-            {% for client in object_list %}
+            {% if object_list %}
+                {% for client in object_list %}
+                    <tr>
+                        <td class="client-table__content">{{ client.id }}</td>
+                        <td class="client-table__content"><a href="{% url 'edit_client' client.id %}">{{ client.name }}</a></td>
+                        <td class="client-table__content"><a href="{% url 'edit_client' client.id %}">{{ client.phone }}</a></td>
+                        <td class="client-table__content"><a href="{% url 'edit_client' client.id %}">{{ client.email }}</a></td>
+                        <td class="client-table__content"><a href="{% url 'edit_client' client.id %}">{{ client.created_at }}</a></td>
+                    </tr>
+                {% endfor %}
+            {% else %}
                 <tr>
-                    <td class="client-table__content">{{ client.id }}</td>
-                    <td class="client-table__content"><a href="{% url 'edit_client' client.id %}">{{ client.name }}</a></td>
-                    <td class="client-table__content"><a href="{% url 'edit_client' client.id %}">{{ client.phone }}</a></td>
-                    <td class="client-table__content"><a href="{% url 'edit_client' client.id %}">{{ client.email }}</a></td>
-                    <td class="client-table__content"><a href="{% url 'edit_client' client.id %}">{{ client.created_at }}</a></td>
+                    <td class="client-table__content">Не найдено</td>
+                    <td class="client-table__content">Не найдено</td>
+                    <td class="client-table__content">Не найдено</td>
+                    <td class="client-table__content">Не найдено</td>
+                    <td class="client-table__content">Не найдено</td>
                 </tr>
-            {% endfor %}
+            
+            {% endif %}
         </tbody>
     </table>
 </div>
+
+<nav aria-label="...">
+
+<ul class="pagination pagination-lg">
+
+    {% if page_obj.has_previous %}
+        <li class="page-item" aria-current="page">
+           <a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
+        </li>
+      {% endif %}
+
+    {% for n in page_obj.paginator.page_range %}
+        {% if n > page_obj.number|add:-4 and n < page_obj.number|add:4 %}
+            <li class="page-item {% if n == page_obj.number %}pag_active{% endif %}">
+                <a class="page-link" href="?page={{ n }}">{{ n }}</a>
+            </li>
+        {% endif %}
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}">&raquo;</a>
+        </li>
+    {% endif %}
+
+</ul>
+
+</nav>
+
 {% endblock %}

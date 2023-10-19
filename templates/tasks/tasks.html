@@ -9,24 +9,58 @@ active
 {% endblock %}
 
 {% block main %}
-  <div class="task__section">
-      <div class="title__container-task">
-          <h3 class="tasks__title">Мои задачи</h3>
-          <button class="task__btn"><a href="newtask.html">Добавить задачу</a> </button>
-      </div>
-      <div class="task-items__container">
-          {% for task in object_list %}
-          <div class="task__items">
-              <h3 class="item__title">{{ task.title }}</h3>
-              <p class="item__text">{{ task.description }}</p>
-              <div class="items__button">
-                  <label for="check1" class="button__text">{{ task.status }}
-                  <input class="real-checkbox" type="checkbox" id="check1" name="done">
-                  <span class="custom-checkbox"></span></label>
-                  <i class="fa-solid fa-trash-can" style="color: #c5544d;"></i>
-              </div>
-          </div>
-          {% endfor %}
-      </div>
-  </div>
+<div class="task__section">
+    <div class="title__container-task">
+        <h3 class="tasks__title">Мои задачи</h3>
+        <button class="task__btn"><a href="{% url 'add_task' %}">Добавить задачу</a> </button>
+    </div>
+
+    <div class="client-filter__container">
+        <div class="client__filter">Все</div>
+        <div class="client__filter">Созданные</div>
+        <div class="client__filter">В процессе</div>
+        <div class="client__filter">Завершенные</div>
+    </div>
+
+    <div class="task-items__container">
+        {% for task in object_list %}
+        <div class="task__items {% if task.status == 'Создано' %}green-border{% elif task.status == 'В процессе' %}orange-border{% else %}red-border{% endif %}">
+            <h3 class="item__title">{{ task.title }}</h3>
+            <p class="client-list__tel">{{ task.status }} {{ task.created_at|date:"d/m/y" }}</p>
+            <p class="item__text"> {{ task.description|truncatechars:32 }}
+            </p>
+            <div class="items__button">
+                <a href="{% url 'edit_task' task.id %}"><i class="fa-solid fa-circle-info" style="color: #524abb;"></i>
+                    Подробнее</a>
+                <a href="{% url 'delete_task' task.id %}"><i class="fa-solid fa-trash-can" style="color: #c5544d;"></i> Удалить</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+<ul class="pagination pagination-lg">
+
+    {% if page_obj.has_previous %}
+        <li class="page-item" aria-current="page">
+           <a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
+        </li>
+      {% endif %}
+
+    {% for n in page_obj.paginator.page_range %}
+        {% if n > page_obj.number|add:-4 and n < page_obj.number|add:4 %}
+            <li class="page-item {% if n == page_obj.number %}pag_active{% endif %}">
+                <a class="page-link" href="?page={{ n }}">{{ n }}</a>
+            </li>
+        {% endif %}
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}">&raquo;</a>
+        </li>
+    {% endif %}
+
+</ul>
+
+</div>
 {% endblock %}
