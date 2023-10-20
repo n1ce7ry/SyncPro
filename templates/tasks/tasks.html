@@ -15,12 +15,12 @@ active
         <button class="task__btn"><a href="{% url 'add_task' %}">Добавить задачу</a> </button>
     </div>
 
-    <div class="client-filter__container">
-        <div class="client__filter">Все</div>
-        <div class="client__filter">Созданные</div>
-        <div class="client__filter">В процессе</div>
-        <div class="client__filter">Завершенные</div>
-    </div>
+    <form method="get" action="{% url 'filter_tasks' %}" class="client-filter__container">
+        <a href="{% url 'tasks' %}" class="client__filter">Все</a>
+        <button type="submit" name="status" value="created" class="client__filter">Созданные</button>
+        <button type="submit" name="status" value="in_process" class="client__filter">В процессе</button>
+        <button type="submit" name="status" value="completed" class="client__filter">Завершенные</button>
+    </form>
 
     <div class="task-items__container">
         {% for task in object_list %}
@@ -42,21 +42,21 @@ active
 
     {% if page_obj.has_previous %}
         <li class="page-item" aria-current="page">
-           <a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
+           <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}">&laquo;</a>
         </li>
       {% endif %}
 
     {% for n in page_obj.paginator.page_range %}
         {% if n > page_obj.number|add:-4 and n < page_obj.number|add:4 %}
             <li class="page-item {% if n == page_obj.number %}pag_active{% endif %}">
-                <a class="page-link" href="?page={{ n }}">{{ n }}</a>
+                <a class="page-link" href="?page={{ n }}{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}">{{ n }}</a>
             </li>
         {% endif %}
     {% endfor %}
 
     {% if page_obj.has_next %}
         <li class="page-item">
-            <a class="page-link" href="?page={{ page_obj.next_page_number }}">&raquo;</a>
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}">&raquo;</a>
         </li>
     {% endif %}
 

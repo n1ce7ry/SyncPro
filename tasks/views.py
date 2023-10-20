@@ -4,6 +4,7 @@ from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from tasks.models import Task
+from tasks.services.filtering import tasks_filtering_by_status
 
 
 class TasksListView(ListView):
@@ -44,6 +45,21 @@ class DeleteTaskView(DeleteView):
     
     def get(self, request, *args, **kwargs):
         return self.delete(request, *args, **kwargs)
+
+
+class FilterTasksListView(ListView):
+    model = Task
+    template_name = 'tasks/tasks.html'
+    paginate_by = 16
+    
+    
+    def get_queryset(self):
+        return tasks_filtering_by_status(self.request.GET.get('status'))
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return _get_todays_date(context)
+
 
     
 def _get_todays_date(context):

@@ -13,6 +13,7 @@ class ClientsListView(ListView):
     template_name = 'clients/clients.html'
     ordering = ['-created_at']
     
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return _get_todays_date(context)
@@ -21,6 +22,11 @@ class ClientsListView(ListView):
 class SearchClientsListView(ListView):
     model = Client
     template_name = 'clients/clients.html'
+    
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return _get_todays_date(context)
 
     def get_queryset(self):
         query = self.request.GET.get("q")
@@ -35,6 +41,7 @@ class AddClientView(CreateView):
     fields = ['name', 'phone', 'email']
     template_name = 'clients/addclient.html'
     
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return _get_todays_date(context)
@@ -44,6 +51,7 @@ class EditClientView(UpdateView):
     model = Client
     fields = ['name', 'phone', 'email']
     template_name = 'clients/editclient.html'
+    
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
