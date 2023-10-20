@@ -3,13 +3,13 @@ from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView
 
 from applications.models import Application
-from applications.services.services import search_applications
+from applications.services.services import search_applications, filter_applications
 
 
 class ApplicationsListView(ListView):
     model = Application
     template_name = 'applications/applications.html'
-    paginate_by = 11 
+    paginate_by = 10 
     ordering = ['-created_at'] 
 
     def get_context_data(self, **kwargs):
@@ -20,12 +20,26 @@ class ApplicationsListView(ListView):
 class SearchApplicationsListView(ListView):
     model = Application
     template_name = 'applications/applications.html'
-    paginate_by = 11
+    paginate_by = 10
     
     def get_queryset(self):
         query = self.request.GET.get("q").strip()
         return search_applications(query)
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return _get_todays_date(context)
+
+
+class FilterApplicationsListView(ListView):
+    model = Application
+    template_name = 'applications/applications.html'
+    paginate_by = 10
+    
+    def get_queryset(self):
+        query = self.request.GET.get('date')
+        return filter_applications(query)
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return _get_todays_date(context)

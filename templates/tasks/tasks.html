@@ -23,21 +23,28 @@ active
     </form>
 
     <div class="task-items__container">
-        {% for task in object_list %}
-        <div class="task__items {% if task.status == 'Создано' %}green-border{% elif task.status == 'В процессе' %}orange-border{% else %}red-border{% endif %}">
-            <h3 class="item__title">{{ task.title }}</h3>
-            <p class="client-list__tel">{{ task.status }} {{ task.created_at|date:"d/m/y" }}</p>
-            <p class="item__text"> {{ task.description|truncatechars:32 }}
-            </p>
-            <div class="items__button">
-                <a href="{% url 'edit_task' task.id %}"><i class="fa-solid fa-circle-info" style="color: #524abb;"></i>
-                    Подробнее</a>
-                <a href="{% url 'delete_task' task.id %}"><i class="fa-solid fa-trash-can" style="color: #c5544d;"></i> Удалить</a>
+        {% if object_list %}
+            {% for task in object_list %}
+            <div class="task__items {% if task.status == 'Создано' %}green-border{% elif task.status == 'В процессе' %}orange-border{% else %}red-border{% endif %}">
+                <h3 class="item__title">{{ task.title }}</h3>
+                <p class="client-list__tel">{{ task.status }} {{ task.created_at|date:"d/m/y" }}</p>
+                <p class="item__text"> {{ task.description|truncatechars:32 }}
+                </p>
+                <div class="items__button">
+                    <a href="{% url 'edit_task' task.id %}"><i class="fa-solid fa-circle-info" style="color: #524abb;"></i>
+                        Подробнее</a>
+                    <a href="{% url 'delete_task' task.id %}"><i class="fa-solid fa-trash-can" style="color: #c5544d;"></i> Удалить</a>
+                </div>
             </div>
+            {% endfor %}
+        {% else %}
+        <div class="no-tasks">
+            <p>У вас еще нет задач</p>
         </div>
-        {% endfor %}
+        {% endif %}
     </div>
 
+{% if object_list %}
 <nav aria-label="...">
 
 <ul class="pagination pagination-lg">
@@ -65,5 +72,6 @@ active
 </ul>
 
 </nav>
+{% endif %}
 </div>
 {% endblock %}

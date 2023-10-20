@@ -72,23 +72,6 @@ footer {
     font-size: 22px;
 }
 
-.form__input {
-    margin: 10px 0 20px 0;
-    padding: 20px 50px 20px 20px;
-    font-size: 18px;
-    font-family: 'Menlo', serif;
-    border: 1px solid #3d42494c;
-    border-radius: 10px;
-    width: 100%;
-    outline: none;
-}
-
-.form__input:focus {
-    outline: 1px solid #524abb;
-    border-radius: 10px;
-}
-
-
 .form__btn {
     background-color: #524abb;
     border: 2px solid #524abb;
@@ -911,4 +894,37 @@ span {
     color: #524abb;
     font-size: 26px;
     margin-bottom: 30px;
+}
+
+
+.form__content input {
+    margin: 10px 0 20px 0;
+    padding: 20px 50px 20px 20px;
+    font-size: 18px;
+    font-family: 'Menlo', serif;
+    border: 1px solid #3d42494c;
+    border-radius: 10px;
+    width: 100%;
+    outline: none;
+}
+
+.form__content input:focus {
+    outline: 1px solid #524abb;
+    border-radius: 10px;
+}
+
+.no-tasks {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 15px;
+    width: 100%;
+    margin-top: 25px;
+}
+
+.no-tasks p {
+    font-size: 46px;
+    color: #a8a7a7;
+    padding-top: 25%;
+    padding-bottom: 25%;
+    text-align: center;
 }

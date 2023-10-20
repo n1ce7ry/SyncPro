@@ -11,22 +11,29 @@ active
 {% block main %}
 <div class="client-title__container">
     <h3 class="client__title">Заявки</h3>
+    {% if object_list %}
     <form method="get" action="{% url 'search_app' %}" class="search-box">
         <input type="text" name="q" class="search-txt" placeholder="Поиск" />
         <button class="search-btn">
             <i class="fa fa-search" aria-hidden="true"></i>
         </button>
     </form>
+    {% endif %}
     <button class="client__btn"><a href="{% url 'add_application' %}">Добавить заявку</a></button>
 </div>
 
-<div class="client-filter__container">
-    <div class="client__filter">Все</div>
-    <div class="client__filter">За неделю</div>
-    <div class="client__filter">За месяц</div>
-</div>
+{% if object_list %}
+<form method="get" action="{% url 'filter_app' %}" class="client-filter__container">
+    <a href="{% url 'applications' %}" class="client__filter">Все</a>
+    <button type="submit" name="date" value="week" class="client__filter">За неделю</button>
+    <button type="submit" name="date" value="month" class="client__filter">За месяц</button>
+</form>
+{% endif %}
 
 <div class="client-table__container">
+
+    {% if object_list%}
+
     <table class="client__table">
         <thead>
             <tr>
@@ -38,65 +45,78 @@ active
             </tr>
         </thead>
         <tbody>
-            {% if object_list%}
-                {% for app in object_list %}
-                <tr>
-                    <td class="client-table__content">
-                        {{ app.id }}
-                    </td>
-                    <td class="client-table__content">
-                        <a class="client-table__link" href="{% url 'edit_app' app.id %}">{{ app.title }}</a>
-                    </td>
-                    <td class="client-table__content">
-                        <a class="client-table__link" href="{% url 'edit_app' app.id %}">{{ app.client }}</a>
-                    </td>
-                    <td class="client-table__content">
-                        <a class="client-table__link" href="{% url 'edit_app' app.id %}">{{ app.price }}</a>
-                    </td>
-                    <td class="client-table__content">
-                        <a class="client-table__link" href="{% url 'edit_app' app.id %}">{{ app.created_at }}</a>
-                    </td>
-                </tr>
-                {% endfor %}
-            {% else %}
-                <tr>
-                    <td class="client-table__content">Не найдено</td>
-                    <td class="client-table__content">Не найдено</td>
-                    <td class="client-table__content">Не найдено</td>
-                    <td class="client-table__content">Не найдено</td>
-                    <td class="client-table__content">Не найдено</td>
-                </tr>
-            {% endif %}
+            {% for app in object_list %}
+            <tr>
+                <td class="client-table__content">
+                    {{ app.id }}
+                </td>
+                <td class="client-table__content">
+                    <a class="client-table__link" href="{% url 'edit_app' app.id %}">{{ app.title }}</a>
+                </td>
+                <td class="client-table__content">
+                    <a class="client-table__link" href="{% url 'edit_app' app.id %}">{{ app.client }}</a>
+                </td>
+                <td class="client-table__content">
+                    <a class="client-table__link" href="{% url 'edit_app' app.id %}">{{ app.price }}</a>
+                </td>
+                <td class="client-table__content">
+                    <a class="client-table__link" href="{% url 'edit_app' app.id %}">{{ app.created_at }}</a>
+                </td>
+            </tr>
+            {% endfor %}
         </tbody>
     </table>
+
+    {% else %}
+    <div class="no-tasks">
+        <p>У вас еще нет заявок</p>
+    </div>
+    {% endif %}
+
 </div>
 
 <nav aria-label="...">
 
-<ul class="pagination pagination-lg">
+    {% if object_list %}
+    <ul class="pagination pagination-lg">
 
-    {% if page_obj.has_previous %}
-        <li class="page-item" aria-current="page">
-           <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">&laquo;</a>
-        </li>
-      {% endif %}
-
-    {% for n in page_obj.paginator.page_range %}
-        {% if n > page_obj.number|add:-4 and n < page_obj.number|add:4 %}
-            <li class="page-item {% if n == page_obj.number %}pag_active{% endif %}">
-                <a class="page-link" href="?page={{ n }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ n }}</a>
+        {% if page_obj.has_previous %}
+            <li class="page-item" aria-current="page">
+                <a class="page-link"
+                    href="?page={{ page_obj.previous_page_number }}
+                    {% if request.GET.q %}&q={{ request.GET.q }}
+                    {% elif request.GET.date %}&date={{ request.GET.date }}
+                    {% endif %}">&laquo;
+                </a>
             </li>
         {% endif %}
-    {% endfor %}
 
-    {% if page_obj.has_next %}
+        {% for n in page_obj.paginator.page_range %}
+            {% if n > page_obj.number|add:-4 and n < page_obj.number|add:4 %}
+                <li class="page-item {% if n == page_obj.number %}pag_active{% endif %}">
+                    <a class="page-link"
+                        href="?page={{ n }}{% if request.GET.q %}&q={{ request.GET.q }}
+                        {% elif request.GET.date %}&date={{ request.GET.date }}
+                        {% endif %}">{{ n }}
+                    </a>
+                </li>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
         <li class="page-item">
-            <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">&raquo;</a>
+            <a class="page-link"
+                href="?page={{ page_obj.next_page_number }}
+                {% if request.GET.q %}&q={{ request.GET.q }}
+                {% elif request.GET.date %}&date={{ request.GET.date }}
+                {% endif %}">&raquo;</a>
         </li>
-    {% endif %}
+        {% endif %}
 
-</ul>
+    </ul>
 
 </nav>
+
+{% endif %}
 
 {% endblock %}

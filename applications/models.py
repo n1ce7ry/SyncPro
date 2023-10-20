@@ -13,8 +13,8 @@ class Application(models.Model):
     price = models.IntegerField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return f"{self.title}"
+
     def get_absolute_url(self):
         return '/applications/'
-
-    def __str__(self):
-        return self.price

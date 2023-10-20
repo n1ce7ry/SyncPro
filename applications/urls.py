@@ -10,4 +10,5 @@ urlpatterns = [
          login_required(views.AddApplicationView.as_view()),
          name='add_application'),
     path('search/', login_required(views.SearchApplicationsListView.as_view()), name='search_app'),
+    path('filter/', login_required(views.FilterApplicationsListView.as_view()), name='filter_app'),
 ]
