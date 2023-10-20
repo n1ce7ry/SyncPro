@@ -4,7 +4,7 @@ from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from tasks.models import Task
-from tasks.services.filtering import tasks_filtering_by_status
+from tasks.services.services import tasks_filtering_by_status
 
 
 class TasksListView(ListView):
@@ -12,7 +12,7 @@ class TasksListView(ListView):
     paginate_by = 16 
     template_name = 'tasks/tasks.html'
     ordering = ['-created_at'] 
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["now"] = timezone.now()
@@ -52,9 +52,9 @@ class FilterTasksListView(ListView):
     template_name = 'tasks/tasks.html'
     paginate_by = 16
     
-    
     def get_queryset(self):
-        return tasks_filtering_by_status(self.request.GET.get('status'))
+        query = self.request.GET.get('status')
+        return tasks_filtering_by_status(query)
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
