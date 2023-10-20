@@ -9,8 +9,8 @@ from clients.services.services import search_clients
 
 class ClientsListView(ListView):
     model = Client
-    paginate_by = 11 
     template_name = 'clients/clients.html'
+    paginate_by = 11 
     ordering = ['-created_at']
      
     def get_context_data(self, **kwargs):
@@ -24,7 +24,7 @@ class SearchClientsListView(ListView):
     paginate_by = 11
     
     def get_queryset(self):
-        query = self.request.GET.get("q")
+        query = self.request.GET.get("q").strip()
         return search_clients(query)
 
     def get_context_data(self, **kwargs):

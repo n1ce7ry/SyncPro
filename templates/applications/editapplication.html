@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Редактировать заявку
+{% endblock %}
+
+{% block app_active %}
+active
+{% endblock %}
+
+{% block date %} {{ now|date:"l, d E" }} {% endblock %}
+
+{% block main %}
+<div class="add-client__section">
+    <h3 class="add-client__title"><a href="{% url 'applications' %}"><i class="fa-solid fa-arrow-left"
+                style="color: #524abb;"></i>
+            Редактирование заявки</a></h3>
+    <div class="add-client__container">
+
+        <form method="post">
+            {% csrf_token %}
+
+            <label class="client-form__label" for="{{ form.title.id_for_label }}"><span>* </span> Изменить заголовок заявки:</label><br>
+            {{ form.title }} <br>
+
+            <label class="client-form__label" for="{{ form.client.id_for_label }}">Изменить клиента:</label><br>
+            {{ form.client }} <br>
+
+            <label class="client-form__label" for="{{ form.price.id_for_label }}">Изменить цену:</label><br>
+            {{ form.price }} <br>
+
+            <button type="submit" class="add-client__btn">Сохранить</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

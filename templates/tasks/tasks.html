@@ -38,6 +38,8 @@ active
         {% endfor %}
     </div>
 
+<nav aria-label="...">
+
 <ul class="pagination pagination-lg">
 
     {% if page_obj.has_previous %}
@@ -49,7 +51,7 @@ active
     {% for n in page_obj.paginator.page_range %}
         {% if n > page_obj.number|add:-4 and n < page_obj.number|add:4 %}
             <li class="page-item {% if n == page_obj.number %}pag_active{% endif %}">
-                <a class="page-link" href="?page={{ n }}{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}">{{ n }}</a>
+                <a class="page-link" href="?page={{ n }}{% if request.GET.status %}&q={{ request.GET.status }}{% endif %}">{{ n }}</a>
             </li>
         {% endif %}
     {% endfor %}
@@ -62,5 +64,6 @@ active
 
 </ul>
 
+</nav>
 </div>
 {% endblock %}

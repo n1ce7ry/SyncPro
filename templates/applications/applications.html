@@ -11,13 +11,13 @@ active
 {% block main %}
 <div class="client-title__container">
     <h3 class="client__title">Заявки</h3>
-    <div class="search-box">
-        <input type="text" name="" class="search-txt" placeholder="Поиск" />
-        <a class="search-btn" href="#">
+    <form method="get" action="{% url 'search_app' %}" class="search-box">
+        <input type="text" name="q" class="search-txt" placeholder="Поиск" />
+        <button class="search-btn">
             <i class="fa fa-search" aria-hidden="true"></i>
-        </a>
-    </div>
-    <button class="client__btn"><a href="newclient.html">Добавить заявку</a></button>
+        </button>
+    </form>
+    <button class="client__btn"><a href="{% url 'add_application' %}">Добавить заявку</a></button>
 </div>
 
 <div class="client-filter__container">
@@ -38,75 +38,65 @@ active
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td class="client-table__content"> 1</td>
-                <td class="client-table__content"><a class="client-table__link" href="editclient.html">Максим</a></td>
-                <td class="client-table__content"><a class="client-table__link" href="editclient.html">+89876428751</a>
-                </td>
-                <td class="client-table__content"><a class="client-table__link"
-                        href="editclient.html">max.zelenin2004@gmail.com</a></td>
-                <td class="client-table__content"><a class="client-table__link" href="editclient.html">12.10.2023</a>
-                </td>
-            </tr>
-            <tr>
-                <td class="client-table__content">2</td>
-                <td class="client-table__content"><a class="client-table__link" href="editclient.html">Настя</a></td>
-                <td class="client-table__content"><a class="client-table__link" href="editclient.html">+89826428751</a>
-                </td>
-                <td class="client-table__content"><a class="client-table__link"
-                        href="editclient.html">anastasia.kokorina2004@gmail.com</a></td>
-                <td class="client-table__content"><a class="client-table__link" href="editclient.html">13.10.2023</a>
-                </td>
-            </tr>
-            <tr>
-                <td class="client-table__content"> 1</td>
-                <td class="client-table__content"><a class="client-table__link" href="editclient.html">Максим</a></td>
-                <td class="client-table__content"><a class="client-table__link" href="editclient.html">+89876428751</a>
-                </td>
-                <td class="client-table__content"><a class="client-table__link"
-                        href="editclient.html">max.zelenin2004@gmail.com</a></td>
-                <td class="client-table__content"><a class="client-table__link" href="editclient.html">12.10.2023</a>
-                </td>
-            </tr>
-            <tr>
-                <td class="client-table__content">2</td>
-                <td class="client-table__content"><a class="client-table__link" href="editclient.html">Настя</a></td>
-                <td class="client-table__content"><a class="client-table__link" href="editclient.html">+89826428751</a>
-                </td>
-                <td class="client-table__content"><a class="client-table__link"
-                        href="editclient.html">anastasia.kokorina2004@gmail.com</a></td>
-                <td class="client-table__content"><a class="client-table__link" href="editclient.html">13.10.2023</a>
-                </td>
-            </tr>
-            <tr>
-                <td class="client-table__content"> 1</td>
-                <td class="client-table__content"><a class="client-table__link" href="editclient.html">-</a></td>
-                <td class="client-table__content"><a class="client-table__link" href="editclient.html">+89876428751</a>
-                </td>
-                <td class="client-table__content"><a class="client-table__link" href="editclient.html">-</a></td>
-                <td class="client-table__content"><a class="client-table__link" href="editclient.html">-</a></td>
-            </tr>
-            <tr>
-                <td class="client-table__content"> 1</td>
-                <td class="client-table__content"><a class="client-table__link" href="editclient.html">Максим</a></td>
-                <td class="client-table__content"><a class="client-table__link" href="editclient.html">+89876428751</a>
-                </td>
-                <td class="client-table__content"><a class="client-table__link"
-                        href="editclient.html">max.zelenin2004@gmail.com</a></td>
-                <td class="client-table__content"><a class="client-table__link" href="editclient.html">12.10.2023</a>
-                </td>
-            </tr>
-            <tr>
-                <td class="client-table__content">2</td>
-                <td class="client-table__content"><a class="client-table__link" href="editclient.html">Настя</a></td>
-                <td class="client-table__content"><a class="client-table__link" href="editclient.html">+89826428751</a>
-                </td>
-                <td class="client-table__content"><a class="client-table__link"
-                        href="editclient.html">anastasia.kokorina2004@gmail.com</a></td>
-                <td class="client-table__content"><a class="client-table__link" href="editclient.html">13.10.2023</a>
-                </td>
-            </tr>
+            {% if object_list%}
+                {% for app in object_list %}
+                <tr>
+                    <td class="client-table__content">
+                        {{ app.id }}
+                    </td>
+                    <td class="client-table__content">
+                        <a class="client-table__link" href="{% url 'edit_app' app.id %}">{{ app.title }}</a>
+                    </td>
+                    <td class="client-table__content">
+                        <a class="client-table__link" href="{% url 'edit_app' app.id %}">{{ app.client }}</a>
+                    </td>
+                    <td class="client-table__content">
+                        <a class="client-table__link" href="{% url 'edit_app' app.id %}">{{ app.price }}</a>
+                    </td>
+                    <td class="client-table__content">
+                        <a class="client-table__link" href="{% url 'edit_app' app.id %}">{{ app.created_at }}</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td class="client-table__content">Не найдено</td>
+                    <td class="client-table__content">Не найдено</td>
+                    <td class="client-table__content">Не найдено</td>
+                    <td class="client-table__content">Не найдено</td>
+                    <td class="client-table__content">Не найдено</td>
+                </tr>
+            {% endif %}
         </tbody>
     </table>
 </div>
+
+<nav aria-label="...">
+
+<ul class="pagination pagination-lg">
+
+    {% if page_obj.has_previous %}
+        <li class="page-item" aria-current="page">
+           <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">&laquo;</a>
+        </li>
+      {% endif %}
+
+    {% for n in page_obj.paginator.page_range %}
+        {% if n > page_obj.number|add:-4 and n < page_obj.number|add:4 %}
+            <li class="page-item {% if n == page_obj.number %}pag_active{% endif %}">
+                <a class="page-link" href="?page={{ n }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ n }}</a>
+            </li>
+        {% endif %}
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">&raquo;</a>
+        </li>
+    {% endif %}
+
+</ul>
+
+</nav>
+
 {% endblock %}

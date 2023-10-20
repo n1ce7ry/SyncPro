@@ -15,8 +15,7 @@ class TasksListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["now"] = timezone.now()
-        return context
+        return _get_todays_date(context)
 
 
 class AddTaskView(CreateView):
@@ -59,7 +58,6 @@ class FilterTasksListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return _get_todays_date(context)
-
 
     
 def _get_todays_date(context):

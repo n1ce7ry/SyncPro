@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Создание заявки
+{% endblock %}
+
+{% block app_active %}
+active
+{% endblock %}
+
+{% block date %} {{ now|date:"l, d E" }} {% endblock %}
+
+{% block main %}
+
+<div class="add-task__section">
+    <h3 class="add-task__title"><a href="{% url 'applications' %}"><i class="fa-solid fa-arrow-left" style="color: #524abb;"></i>
+            Добавление новой заявки</a></h3>
+    <div class="add-task__container">
+        <form method="post">
+            {% csrf_token %}
+
+            <label class="task-form__label" for="{{ form.title.id_for_label }}"><span>* </span> Введите название заявки:</label><br>
+            {{ form.title }} <br>
+
+            <label class="task-form__label" for="{{ form.client.id_for_label }}">Выберите клиента:</label><br>
+            {{ form.client }} <br>
+
+            <label class="task-form__label" for="{{ form.description.id_for_label }}">Укажите цену:</label><br>
+            {{ form.price }} <br>
+
+            <button type="submit" class="add-task__btn">Добавить</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

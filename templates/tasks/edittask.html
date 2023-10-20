@@ -22,10 +22,10 @@ active
         <form method="post">
             {% csrf_token %}
 
-            <label class="client-form__label" for="{{ form.name.id_for_label }}">Изменить заголовок задачи:</label><br>
+            <label class="client-form__label" for="{{ form.name.id_for_label }}"><span>* </span> Изменить заголовок задачи:</label><br>
             {{ form.title }} <br>
 
-            <label class="client-form__label" for="{{ form.phone.id_for_label }}">Изменить описание задачи:</label><br>
+            <label class="client-form__label" for="{{ form.phone.id_for_label }}"><span>* </span> Изменить описание задачи:</label><br>
             {{ form.description }} <br>
 
             <label class="client-form__label" for="{{ form.email.id_for_label }}">Изменить статус задачи:</label><br>

@@ -567,7 +567,7 @@ span {
     padding-left: 10px;
 }
 
-.add-task__container input {
+.add-task__container input, select {
     margin: 20px 0;
     padding: 10px;
     width: 500px;
@@ -781,7 +781,7 @@ span {
     padding-left: 10px;
 }
 
-.client-form__input, #id_name, #id_phone, #id_email, #id_title, #id_description, #id_status {
+.client-form__input, input, select {
     margin: 20px 0;
     padding: 10px;
     width: 500px;

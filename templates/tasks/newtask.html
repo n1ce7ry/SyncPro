@@ -19,10 +19,10 @@ active
         <form method="post">
             {% csrf_token %}
 
-            <label class="task-form__label" for="{{ form.title.id_for_label }}">Введите название задачи:</label><br>
+            <label class="task-form__label" for="{{ form.title.id_for_label }}"><span>* </span> Введите название задачи:</label><br>
             {{ form.title}} <br>
 
-            <label class="task-form__label" for="{{ form.description.id_for_label }}">Опишите задачу:</label><br>
+            <label class="task-form__label" for="{{ form.description.id_for_label }}"><span>* </span> Опишите задачу:</label><br>
             {{ form.description }} <br>
             <button type="submit" class="add-task__btn">Добавить</button>
         </form>
