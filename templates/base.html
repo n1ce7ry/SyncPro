@@ -43,7 +43,10 @@
       </div>
       <div class="main__login">
         <a href="settings.html" class="login__items"><i class="fa-solid fa-user-large"></i></i> Максим</a>
-        <a href="registration.html" class="login__items"><i class="fa-solid fa-right-from-bracket"></i> Выход</a>
+        <form method="post" class="login__items" action="{% url 'logout' %}">
+          {% csrf_token %}
+          <button type="submit" class="login__items"><i class="fa-solid fa-right-from-bracket"></i> Выход</button>
+        </form>
       </div>
     </div>
 

@@ -3,5 +3,5 @@ from django.urls import path
 from dashboard import views
 
 urlpatterns = [
-    path('', login_required(views.dashboard), name='dashboard'),
+    path('', login_required(views.DashboardListView.as_view()), name='dashboard'),
 ]

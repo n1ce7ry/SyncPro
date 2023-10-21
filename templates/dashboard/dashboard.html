@@ -68,36 +68,24 @@ active
             <div class="dash-client__container">
                 <h3 class="dash-client__title">Топ клиентов</h3>
                 <ul class="dash-client__list">
-                    <li class="client-list__item">
+                    {% for client in object_list %}
+                    {% if not client.client_impact == None %}
+                    <a href="{% url 'edit_client' client.id %}" class="client-list__item">
                         <div class="client-list__content">
-                            <div>
-                                <img class="dash-client__avatar" src="./images/avatar.png" alt="avatar">
+                            <div class="dash-client__avatar avatar" data-initial="{{ client.name|first }}">
                             </div>
                             <div>
-                                Настя
-                                <p class="client-list__tel">+7982645761</p>
+                                {{ client.name }}
+                                <p class="client-list__tel">{{ client.phone }}</p>
                             </div>
                         </div>
                         <div class="client-list__money">
-                            <span class="finance__span">+ 10.000₽</span>
+                            <span class="finance__span">+ {{ client.client_impact }}₽</span>
                         </div>
 
-                    </li>
-                    <li class="client-list__item">
-                        <div class="client-list__content">
-                            <div>
-                                <img class="dash-client__avatar" src="./images/avatar.png" alt="avatar">
-                            </div>
-                            <div>
-                                Настя
-                                <p class="client-list__tel">+7982645761</p>
-                            </div>
-                        </div>
-                        <div class="client-list__money">
-                            <span class="finance__span">+ 10.000₽</span>
-                        </div>
-
-                    </li>
+                    </a>
+                    {% endif %}
+                    {% endfor %}
                 </ul>
             </div>
         </div>

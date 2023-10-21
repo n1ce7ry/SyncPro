@@ -161,6 +161,7 @@ footer {
     font-size: 20px;
     padding-left: 13px;
     color: #181b20;
+    background: none;
 }
 
 .login__items:hover {
@@ -209,7 +210,7 @@ footer {
 
 .tasks__title {
     color: #524abb;
-    font-size: 26px;
+    font-size: 22px;
 }
 .task__title{
     font-size: 18px;
@@ -927,4 +928,21 @@ span {
     padding-top: 25%;
     padding-bottom: 25%;
     text-align: center;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #007bff;
+    color: #ffffff;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar::after {
+    content: attr(data-initial);
+    font-weight: bold;
 }
