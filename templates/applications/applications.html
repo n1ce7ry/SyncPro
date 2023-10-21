@@ -75,9 +75,10 @@ active
 
 </div>
 
+{% if object_list %}
+
 <nav aria-label="...">
 
-    {% if object_list %}
     <ul class="pagination pagination-lg">
 
         {% if page_obj.has_previous %}

@@ -12,6 +12,8 @@ active
 
 {% block main %}
 
+<div style="display: none" id="jsonData" data-json="{{ data }}"></div>
+
 <div class="finance__section">
     <h3 class="finance__title">Доходы</h3>
     <div class="finance__container">
@@ -24,22 +26,14 @@ active
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="finance-table__content">10.10.23, 17:45</td>
-                        <td class="finance-table__content"> <span class="finance__span">+ 1000₽</span></td>
-                    </tr>
-                    <tr>
-                        <td class="finance-table__content">9.11.23, 17:45</td>
-                        <td class="finance-table__content"><span class="finance__span">+ 100000₽</span></td>
-                    </tr>
-                    <tr>
-                        <td class="finance-table__content">18.10.23, 17:45</td>
-                        <td class="finance-table__content"><span class="finance__span">+ 5000₽</span></td>
-                    </tr>
-                    <tr>
-                        <td class="finance-table__content">23.10.23, 17:45</td>
-                        <td class="finance-table__content"><span class="finance__span">+ 10000₽</span></td>
-                    </tr>
+                    {% for revenue in object_list %}
+                        {% if not revenue.price == None %}
+                            <tr>
+                                <td class="finance-table__content">{{ revenue.created_at }}</td>
+                                <td class="finance-table__content"> <span class="finance__span">+ {{ revenue.price }}₽</span></td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
@@ -50,14 +44,14 @@ active
                     <h3 class="indicators__title">Заявки</h3>
                     <p><i class="fa-regular fa-handshake finance__ikon"></i></p>
                 </div>
-                <p class="indicators__content">+ 206</p>
+                <p class="indicators__content">+ {{ total_app.app_by_month }}</p>
             </div>
             <div class="finace-indicators">
                 <div class="indicators-title__container">
                     <h3 class="indicators__title">Прибыль</h3>
                     <p><i class="fa-solid fa-money-bills finance__ikon"></i></p>
                 </div>
-                <p class="indicators__content"><span class="finance__span">+ 10.000₽</span> </p>
+                <p class="indicators__content"><span class="finance__span">+ {{ total_price.revenue_by_month }}₽</span> </p>
             </div>
         </div>
     </div>
@@ -68,6 +62,51 @@ active
         </div>
     </div>
 </div>
+
+{% if object_list %}
+
+<nav aria-label="...">
+
+    <ul class="pagination pagination-lg">
+
+        {% if page_obj.has_previous %}
+            <li class="page-item" aria-current="page">
+                <a class="page-link"
+                    href="?page={{ page_obj.previous_page_number }}
+                    {% if request.GET.q %}&q={{ request.GET.q }}
+                    {% elif request.GET.date %}&date={{ request.GET.date }}
+                    {% endif %}">&laquo;
+                </a>
+            </li>
+        {% endif %}
+
+        {% for n in page_obj.paginator.page_range %}
+            {% if n > page_obj.number|add:-4 and n < page_obj.number|add:4 %}
+                <li class="page-item {% if n == page_obj.number %}pag_active{% endif %}">
+                    <a class="page-link"
+                        href="?page={{ n }}{% if request.GET.q %}&q={{ request.GET.q }}
+                        {% elif request.GET.date %}&date={{ request.GET.date }}
+                        {% endif %}">{{ n }}
+                    </a>
+                </li>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+        <li class="page-item">
+            <a class="page-link"
+                href="?page={{ page_obj.next_page_number }}
+                {% if request.GET.q %}&q={{ request.GET.q }}
+                {% elif request.GET.date %}&date={{ request.GET.date }}
+                {% endif %}">&raquo;</a>
+        </li>
+        {% endif %}
+
+    </ul>
+
+</nav>
+
+{% endif %}
 {% endblock %}
 
 {% block js %}

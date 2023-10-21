@@ -2,11 +2,9 @@ from datetime import date, timedelta
 from calendar import monthrange
 
 from django.db.models import Q
+from django.utils import timezone
 
 from applications.models import Application
-
-
-START_DAY = date.today()
 
 
 def search_applications(query):
@@ -22,19 +20,20 @@ def search_applications(query):
     return object_list.order_by('-created_at')
 
 
-def filter_applications(date):
+def filter_applications(time):
     """
     Filters applications by week, month
     Return: QuerySet
     """
 
-    if date == 'week':
-        enddate = START_DAY + timedelta(days=7)
-        object_list = Application.objects.filter(created_at__range=[START_DAY, enddate])
+    if time == 'week':
+        last_week = timezone.now() - timedelta(weeks=1)
+        object_list = Application.objects.filter(created_at__gte=last_week)
 
-    elif date == 'month':
-        days_in_month = monthrange(START_DAY.year, START_DAY.month)[1]
-        enddate = START_DAY + timedelta(days=days_in_month)
-        object_list = Application.objects.filter(created_at__range=[START_DAY, enddate])
+    elif time == 'month':
+        today = date.today()
+        days_in_month = monthrange(today.year, today.month)[1]
+        last_month = timezone.now() - timedelta(days=days_in_month)
+        object_list = Application.objects.filter(created_at__gte=last_month)
 
     return object_list.order_by('-created_at')

@@ -1,10 +1,19 @@
+function loadJson(selector) {
+    return JSON.parse(document.querySelector(selector).getAttribute('data-json'));
+}
+
+var jsonData = loadJson('#jsonData');
+
+var data = jsonData.map((item) => item.count);
+var labels = jsonData.map((item) => item.day);
+
 var speedCanvas = document.getElementById("speedChart");
 
 var speedData = {
-    labels: ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
+    labels: labels,
     datasets: [{
         label: "Доходы за неделю",
-        data: [1000, 5000, 12000, 10000, 5000, 8000],
+        data: data,
     }]
 };
 
