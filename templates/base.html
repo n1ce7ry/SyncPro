@@ -6,6 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %}{% endblock %}</title>
+  <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/png">
   <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
   <script src="https://kit.fontawesome.com/06d986b207.js" crossorigin="anonymous"></script>
@@ -16,9 +17,9 @@
 <body>
   <header class="header">
     <div class="header__container">
-      <div class="logo__container">
+      <a href="{% url 'dashboard' %}" class="logo__container">
         <img class="header__logo" src="{% static 'images/logo.png' %}" alt="логотип">
-      </div>
+      </a>
       <div class="sidenav">
         <a class="nav__link {% block dash_active %}{% endblock %}" href="{% url 'dashboard' %}"><i
             class="fa-solid fa-table-columns"></i> Дэшборд</a>
@@ -42,10 +43,10 @@
         <p class="main__data">{% block date %}{% endblock %}</p>
       </div>
       <div class="main__login">
-        <a href="settings.html" class="login__items"><i class="fa-solid fa-user-large"></i></i> Максим</a>
+        <a href="{% url 'settings' %}" class="login__items"><i class="fa-solid fa-user-large"></i></i></a>
         <form method="post" class="login__items" action="{% url 'logout' %}">
           {% csrf_token %}
-          <button type="submit" class="login__items"><i class="fa-solid fa-right-from-bracket"></i> Выход</button>
+          <button type="submit" class="login__items"><i class="fa-solid fa-right-from-bracket"></i></button>
         </form>
       </div>
     </div>

@@ -961,3 +961,38 @@ span {
     content: attr(data-initial);
     font-weight: bold;
 }
+.rounded-circle {
+    border-radius: 50% !important;
+}
+.text-muted {
+    color: #aeb0b4 !important;
+}
+.text-muted {
+    font-weight: 300;
+}
+.form-control {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #4d5154;
+    background-color: #ffffff;
+    background-clip: padding-box;
+    border: 1px solid #eef0f3;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.page-title {
+    margin-top: 30px;
+    color: #524abb;
+    margin-bottom: 30px;
+}
+.setting_avatar {
+    width: 100px;
+    height: 100px;
+    font-size: 36px;
+    margin-bottom: 30px;
+}
