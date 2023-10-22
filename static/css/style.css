@@ -216,6 +216,10 @@ footer {
     font-size: 18px;
 }
 
+.tasks__title a {
+    color: #524abb;
+}
+
 .tasks__cotainer {
     display: flex;
     justify-content: space-between;
@@ -236,6 +240,10 @@ footer {
     font-size: 16px;
     color: #aaaeb1;
     font-weight: normal;
+}
+
+.link__text a {
+    color: #aaaeb1;
 }
 
 span {
@@ -343,7 +351,7 @@ span {
 .dash-client__title{
     font-size: 22px;
     color: #524abb;
-    padding-bottom: 15px;
+    padding-bottom: 20px;
 }
 .dash-client__list{
     margin-top: 15px;
@@ -386,6 +394,9 @@ span {
     padding: 25px;
     box-shadow: 2px 2px 5px rgba(20, 29, 61, 0.038), -2px -2px 5px rgba(20, 29, 61, 0.038);
 }
+.finance a {
+    color: #524abb;
+}
 .finance-graphic__design{
     width: 100%;
 }
@@ -407,6 +418,10 @@ span {
     margin-left: 30px;
     padding: 25px;
     box-shadow: 2px 2px 5px rgba(20, 29, 61, 0.038), -2px -2px 5px rgba(20, 29, 61, 0.038);
+}
+
+.applications a {
+    color: #524abb;
 }
 
 .applications__title {

@@ -57,7 +57,7 @@ active
                     <a class="client-table__link" href="{% url 'edit_app' app.id %}">{{ app.client }}</a>
                 </td>
                 <td class="client-table__content">
-                    <a class="client-table__link" href="{% url 'edit_app' app.id %}">{{ app.price }}</a>
+                    <a class="client-table__link" href="{% url 'edit_app' app.id %}">{{ app.price }} {% if not app.price == None %}₽{% endif %}</a>
                 </td>
                 <td class="client-table__content">
                     <a class="client-table__link" href="{% url 'edit_app' app.id %}">{{ app.created_at }}</a>

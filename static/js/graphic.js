@@ -7,6 +7,10 @@ function getRandomColor() {
     return color;
 }
 
+function loadJson(selector) {
+    return JSON.parse(document.querySelector(selector).getAttribute('data-json'));
+}
+
 document.addEventListener("DOMContentLoaded", function () {
     var avatars = document.getElementsByClassName("avatar");
     console.log(avatars)
@@ -18,26 +22,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
 window.onload = function () {
 
+    var finance = loadJson('#FinanceJsonData');
+    var application = loadJson('#ApplicationJsonData');
+
+    var finance_data = finance.map((item) => item.count);
+    var finance_labels = finance.map((item) => item.day);
+
+    var application_data = application.map((item) => item.count);
+    var application_labels = application.map((item) => item.day);
+
     var oilCanvas = document.getElementById("oilChart");
 
     var ctx = document.getElementById('myChart');
 
-
     var oilData = {
-        labels: [
-            "Пн",
-            "Вт",
-            "Ср",
-            "Чт",
-            "Пт",
-            "Сб"
-        ],
+        labels: finance_labels,
         datasets: [
             {
-                data: [10, 2, 3, 4, 7, 9],
+                data: finance_data,
                 backgroundColor: [
                     "#FF6384",
-                    "#63FF84",
+                    "#524abb",
                     "#84FF63",
                     "#8463FF",
                     "#6384FF",
@@ -55,10 +60,10 @@ window.onload = function () {
     new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+            labels: application_labels,
             datasets: [{
                 label: 'Заявки за неделю',
-                data: [12, 19, 3, 5, 2, 3],
+                data: application_data,
                 borderWidth: 1,
                 backgroundColor: '#524abb',
             }]

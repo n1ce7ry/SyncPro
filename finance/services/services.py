@@ -1,11 +1,12 @@
 import json
-from datetime import date, timedelta, datetime
+from datetime import date, timedelta
 from calendar import monthrange
 
 from django.utils import timezone
 from django.db.models import Sum, Count
 
 from applications.models import Application
+from dashboard.services.services import get_day_abbr
 
 
 def get_finance_statistics():
@@ -17,8 +18,8 @@ def get_statistics_by_month(context):
     """
     The service generates context for application statistics.
     """
-    month = _get_current_month()
     week = _get_current_week()
+    month = _get_current_month()
 
     total_applications = Application.objects.filter(created_at__gte=month).aggregate(
         app_by_month=Count("id")
@@ -27,14 +28,10 @@ def get_statistics_by_month(context):
         revenue_by_month=Sum("price")
     )
 
-    context["now"] = timezone.now()
-    context["total_app"] = total_applications
-    context["total_price"] = total_applications_revenue
-
     context['data'] = json.dumps(
         [
             {
-                'day': obj['day'].split('-')[2],
+                'day': get_day_abbr(obj['day']),
                 'count': obj['count'],
             }
             for obj in Application.objects.filter(created_at__gte=week).extra(
@@ -43,6 +40,9 @@ def get_statistics_by_month(context):
         ]
     )
 
+    context["now"] = timezone.now()
+    context["total_app"] = total_applications
+    context["total_price"] = total_applications_revenue
     return context
 
 

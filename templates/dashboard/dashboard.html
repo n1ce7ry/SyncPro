@@ -10,108 +10,100 @@
 active
 {% endblock %}
 
-{% block date %} {{ now|date:"l, d E"  }} {% endblock %}
+{% block date %} {{ now|date:"l, d E" }} {% endblock %}
 
 {% block main %}
 
-        <h3 class="tasks__title-dash">Дэшборд</h3>
-        <div class="section__container">
+<div style="display: none" id="FinanceJsonData" data-json="{{ finance_data }}"></div>
+<div style="display: none" id="ApplicationJsonData" data-json="{{ application_data }}"></div>
 
-            <div class="section__tasks">
-                <div class="title__container">
-                    <h3 class="tasks__title">Задачи на сегодня</h3>
-                    <p class="task__title">Выполнено 5 из 10</p>
-                </div>
-                <div class="tasks__cotainer">
-                    <div class="task__items-dash">
-                        <ul class="task__list">
-                            <li class="task__links">
-                                <a href="tasks.html"> Приготовить покушать
-                                    <p class="link__text">Описание задачи <span> Удалить <i
-                                                class="fa-solid fa-arrow-right"></i></span></p>
-                                </a>
-                            </li>
-                            <li class="task__links"> <a href="tasks.html">Убраться
-                                    <p class="link__text">Описание задачи <span> Удалить <i
-                                                class="fa-solid fa-arrow-right"></i></span></p>
-                                </a>
-                            </li>
-                            <li class="task__links"> <a href="tasks.html">Сходить в мгазин
-                                    <p class="link__text">Описание задачи <span> Удалить <i
-                                                class="fa-solid fa-arrow-right"></i></span></p>
-                                </a>
-                            </li>
-                            <li class="task__links"> <a href="tasks.html">Сходить в мгазин
-                                    <p class="link__text">Описание задачи <span> Удалить <i
-                                                class="fa-solid fa-arrow-right"></i></span></p>
-                                </a>
-                            </li>
+<h3 class="tasks__title-dash">Дэшборд</h3>
+<div class="section__container">
 
-                        </ul>
-
-                    </div>
-                    <div id="month-calendar">
-                        <ul class="month">
-                            <li class="prev"><i class="fas fa-angle-double-left"></i></li>
-                            <li class="next"><i class="fas fa-angle-double-right"></i></li>
-                            <li class="month-name"></li>
-                            <li class="year-name"></li>
-                        </ul>
-
-                        <ul class="days">
-                        </ul>
-                    </div>
-
-                </div>
+    <div class="section__tasks">
+        <div class="title__container">
+            <h3 class="tasks__title"><a href="{% url 'tasks' %}"> Задачи</a></h3>
+            <p class="task__title">Выполнено {{ task_data.total_tasks_completed }} из {{ task_data.total_tasks }}</p>
+        </div>
+        <div class="tasks__cotainer">
+            <div class="task__items-dash">
+                <ul class="task__list">
+                    {% if latest_tasks %}
+                    {% for task in latest_tasks %}
+                    <li class="task__links">
+                        <a href="tasks.html"> {{ task.title }}
+                            <p class="link__text">{{ task.description|truncatechars:30 }}
+                                <a href="{% url 'edit_task' task.id %}"> <span>Подробнее <i
+                                            class="fa-solid fa-arrow-right"></i></span></a>
+                        </a>
+                    </li>
+                    {% endfor %}
+                    {% endif %}
+                </ul>
 
             </div>
-            <div class="dash-client__container">
-                <h3 class="dash-client__title">Топ клиентов</h3>
-                <ul class="dash-client__list">
-                    {% for client in object_list %}
-                    {% if not client.client_impact == None %}
-                    <a href="{% url 'edit_client' client.id %}" class="client-list__item">
-                        <div class="client-list__content">
-                            <div class="dash-client__avatar avatar" data-initial="{{ client.name|first }}">
-                            </div>
-                            <div>
-                                {{ client.name }}
-                                <p class="client-list__tel">{{ client.phone }}</p>
-                            </div>
-                        </div>
-                        <div class="client-list__money">
-                            <span class="finance__span">+ {{ client.client_impact }}₽</span>
-                        </div>
+            <div id="month-calendar">
+                <ul class="month">
+                    <li class="prev"><i class="fas fa-angle-double-left"></i></li>
+                    <li class="next"><i class="fas fa-angle-double-right"></i></li>
+                    <li class="month-name"></li>
+                    <li class="year-name"></li>
+                </ul>
 
-                    </a>
-                    {% endif %}
-                    {% endfor %}
+                <ul class="days">
                 </ul>
             </div>
+
         </div>
-        <div class="section__graphics">
-            <div class="graphics__container">
-                <div class="finance">
-                    <h3 class="finance__title-dash">Доходы</h3>
-                    <div class="finance__graphic">
-                        <canvas class="finance-graphic__design" id="oilChart"></canvas>
-                    </div>
 
+    </div>
+    <div class="dash-client__container">
+        <h3 class="dash-client__title">Топ клиентов</h3>
+        <ul class="dash-client__list">
+            {% for client in object_list %}
+            {% if not client.client_impact == None %}
+            <a href="{% url 'edit_client' client.id %}" class="client-list__item">
+                <div class="client-list__content">
+                    <div class="dash-client__avatar avatar" data-initial="{{ client.name|first }}">
+                    </div>
+                    <div>
+                        {{ client.name }}
+                        <p class="client-list__tel">{{ client.phone }}</p>
+                    </div>
+                </div>
+                <div class="client-list__money">
+                    <span class="finance__span">+ {{ client.client_impact }}₽</span>
                 </div>
 
-                <div class="applications">
-                    <h3 class="applications__title">Заявки</h3>
-                    <div class="applications__graphic">
-                        <canvas class="applic-graphics__design" id="myChart"></canvas>
-                    </div>
-                </div>
+            </a>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+<div class="section__graphics">
+    <div class="graphics__container">
+        <div class="finance">
+            <h3 class="finance__title-dash"><a href="{% url 'finance' %}"> Доходы</a></h3>
+            <div class="finance__graphic">
+                <canvas class="finance-graphic__design" id="oilChart"></canvas>
+            </div>
+
+        </div>
+
+        <div class="applications">
+            <h3 class="applications__title"><a href="{% url 'applications' %}"> Заявки</a></h3>
+            <div class="applications__graphic">
+                <canvas class="applic-graphics__design" id="myChart"></canvas>
             </div>
         </div>
+    </div>
+</div>
 
 {% endblock %}
 
 {% block js %}
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="{% static 'js/graphic.js' %}"></script>
-    <script src="{% static 'js/calendar.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{% static 'js/graphic.js' %}"></script>
+<script src="{% static 'js/calendar.js' %}"></script>
 {% endblock %}

@@ -1,8 +1,10 @@
 from django.views.generic.list import ListView
-from django.utils import timezone
 
 from clients.models import Client
-from dashboard.services.services import get_customer_statistics
+from dashboard.services.services import (
+    get_customer_statistics,
+    get_summarize_all_section,
+)
 
 
 class DashboardListView(ListView):
@@ -15,9 +17,4 @@ class DashboardListView(ListView):
         
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        return _get_todays_date(context)
-
-
-def _get_todays_date(context):
-    context["now"] = timezone.now()
-    return context
+        return get_summarize_all_section(context)
